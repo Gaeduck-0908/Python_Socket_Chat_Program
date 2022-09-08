@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# ¼ÒÄÏÀ» »ç¿ëÇÏ±â À§ÇÑ ¶óÀÌºê·¯¸®
+# ì†Œì¼“ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë¼ì´ë¸ŒëŸ¬ë¦¬
 import socket
-# ½º·¹µå¸¦ »ç¿ëÇÏ±â À§ÇÑ ¶óÀÌºê·¯¸®
+# ìŠ¤ë ˆë“œë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë¼ì´ë¸ŒëŸ¬ë¦¬
 from _thread import *
 
 Client = []
@@ -9,16 +9,16 @@ Client = []
 def threaded(C_socket,addr):
     print('Connect : ',addr[0], ':', addr[1])
 
-    # Å¬¶óÀÌ¾ğÆ®°¡ Á¢¼ÓÀ» Á¾·áÇÒ¶§±îÁö
+    # í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì†ì„ ì¢…ë£Œí• ë•Œê¹Œì§€
     while True:
         try:
-            # µ¥ÀÌÅÍ ¹Ş¾Æ¿È
+            # ë°ì´í„° ë°›ì•„ì˜´
             data = C_socket.recv(2048)
 
-            # ¹Ş¾Æ¿Â µ¥ÀÌÅÍ Ãâ·Â
+            # ë°›ì•„ì˜¨ ë°ì´í„° ì¶œë ¥
             print('Recived : ' + addr[0], ':', addr[1], data.decode())
             
-            # Àü¼ÛÇÑ Å¬¶óÀÌ¾ğÆ®¸¦ Á¦¿ÜÇÏ°í data¸¦ send
+            # ì „ì†¡í•œ í´ë¼ì´ì–¸íŠ¸ë¥¼ ì œì™¸í•˜ê³  dataë¥¼ send
             if(len(Client) >= 2) :
                 for C in Client :
                     if C != C_socket :
@@ -33,23 +33,23 @@ def threaded(C_socket,addr):
             break
     C_socket.close()
 
-# Á¢¼ÓÇÒ ¼­¹ö ÁÖ¼Ò,Æ÷Æ®
+# ì ‘ì†í•  ì„œë²„ ì£¼ì†Œ,í¬íŠ¸
 # HOST = '127.0.0.1'
 HOST = '10.104.147.2'
 while True:
     try:
         PORT = int(input('Server PORT > '))
 
-        # ¼ÒÄÏ»ı¼º 
-        # AF_INET = ÁÖ¼Ò Ã¼°è 
-        # SOCK_STREAM = TCP·Î ¹Ş¾Æ¿È
+        # ì†Œì¼“ìƒì„± 
+        # AF_INET = ì£¼ì†Œ ì²´ê³„ 
+        # SOCK_STREAM = TCPë¡œ ë°›ì•„ì˜´
         S_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        # bind = ¼ÒÄÏ ¿¬°á
+        # bind = ì†Œì¼“ ì—°ê²°
         S_socket.bind((HOST,PORT))
 
   
-        # Å¬¶óÀÌ¾ğÆ® Á¢¼Ó Çã°¡
+        # í´ë¼ì´ì–¸íŠ¸ ì ‘ì† í—ˆê°€
         S_socket.listen()
 
         print('Open Server')
@@ -58,12 +58,12 @@ while True:
         print('Duplicate port number Please use a different number.\n')
 
 
-# ¹«ÇÑ·çÇÁ
+# ë¬´í•œë£¨í”„
 while True:
     print('Wait...')
 
-    # accept = Å¬¶óÀÌ¾ğÆ® ¹Ş¾Æ¿È
+    # accept = í´ë¼ì´ì–¸íŠ¸ ë°›ì•„ì˜´
     C_socket, addr = S_socket.accept()
-    # Á¢¼ÓÇÑ Å¬¶óÀÌ¾ğÆ®ÀÇ °¹¼ö
+    # ì ‘ì†í•œ í´ë¼ì´ì–¸íŠ¸ì˜ ê°¯ìˆ˜
     Client.append(C_socket)
     start_new_thread(threaded, (C_socket,addr))
