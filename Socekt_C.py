@@ -1,41 +1,41 @@
 # -*- coding: utf-8 -*-
-# ¼ÒÄÏÀ» »ç¿ëÇÏ±â À§ÇÑ ¶óÀÌºê·¯¸®
+# ì†Œì¼“ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë¼ì´ë¸ŒëŸ¬ë¦¬
 import socket
 from _thread import *
 
-# Á¢¼ÓÇÒ ¼­¹ö ÁÖ¼Ò,Æ÷Æ®
+# ì ‘ì†í•  ì„œë²„ ì£¼ì†Œ,í¬íŠ¸
 # HOST = '127.0.0.1'
 HOST = '10.104.147.2'
 while True:
     try :
         PORT = int(input('Connect to PORT > '))
 
-        # ¼ÒÄÏ»ı¼º 
-        # AF_INET = ÁÖ¼Ò Ã¼°è 
-        # SOCK_STREAM = TCP·Î ¹Ş¾Æ¿È
+        # ì†Œì¼“ìƒì„± 
+        # AF_INET = ì£¼ì†Œ ì²´ê³„ 
+        # SOCK_STREAM = TCPë¡œ ë°›ì•„ì˜´
         C_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        # ¼­¹ö Á¢¼Ó
+        # ì„œë²„ ì ‘ì†
         C_socket.connect((HOST,PORT))
         print('Connect!!!')
         break
     except :
         print('The port number to connect to is different..\n')
 
-# µ¥ÀÌÅÍ¸¦ ¹Ş¾Æ¿Ã ÇÔ¼ö
+# ë°ì´í„°ë¥¼ ë°›ì•„ì˜¬ í•¨ìˆ˜
 def recv_data(C_socket) :
     while True :
         data = C_socket.recv(2048)
 
         print("Recived : ",repr(data.decode()))
 
-# ¾²·¹µå ½ÃÀÛ
+# ì“°ë ˆë“œ ì‹œì‘
 start_new_thread(recv_data, (C_socket,))
 
 print('Enter exit or quit to exit the program')
-# µ¥ÀÌÅÍ ÀÔ·Â
+# ë°ì´í„° ì…ë ¥
 while True:
-    # µ¥ÀÌÅÍ Àü¼Û
+    # ë°ì´í„° ì „ì†¡
     text = input()
 
     if text == 'quit' or text == 'exit':
