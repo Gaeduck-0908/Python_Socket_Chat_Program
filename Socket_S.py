@@ -34,8 +34,7 @@ def threaded(C_socket,addr):
     C_socket.close()
 
 # 접속할 서버 주소,포트
-# HOST = '127.0.0.1'
-HOST = '10.104.147.2'
+HOST = '127.0.0.1'
 while True:
     try:
         PORT = int(input('Server PORT > '))
