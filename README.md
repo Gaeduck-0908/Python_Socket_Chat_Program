@@ -9,4 +9,5 @@ or
 
 # 실행 화면
 ![image](https://user-images.githubusercontent.com/82009667/189005986-34a88383-e5d9-4bc7-9d84-e69656c5bfdf.png)
+---
 ![image](https://user-images.githubusercontent.com/82009667/189006010-bf219829-486a-4994-87ab-dc8d7b32d2e4.png)
